@@ -52,10 +52,10 @@ public class UserRepositiryCache {
 		if(user.getPhone() != null) {
 			u.setPhone(user.getPhone());
 		}
-		if(u.getName() != user.getName()) {
+		if(!u.getName().equals(user.getName())) {
 			throw new RuntimeException("Not allowed to change Name");
 		}
-		if(user.getSex() != null && u.getSex() != user.getSex()) {
+		if(user.getSex() != null && u.getSex().equals(user.getSex())) {
 			throw new RuntimeException("Not allowed to change Sex");
 		}
 		if(user.getAge() != null) {
