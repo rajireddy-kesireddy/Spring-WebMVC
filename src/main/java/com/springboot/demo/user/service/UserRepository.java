@@ -1,46 +1,38 @@
 package com.springboot.demo.user.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository  {
+	
+	@Autowired
+	private UserRepositiryCache cache;
 
-	public User getUser(int id) {
+	@Cacheable("user")
+	public User getUser(Integer id) {
 		
-		User u = new User();
-		u.setId(id);
-		u.setName("Test");
-		u.setAge(30);
-		u.setEmail("abc@xyz.com");
-		u.setPhone(9180234567L);
-		u.setSex("M");
-		return u;
+		return cache.getUser(id);
 	}
-	
-	
 	public List<User> getUsers() {
-		
-		List<User> users = new ArrayList<>();
-		users.add(createUser(1, "name1", 20));
-		users.add(createUser(2, "name2", 24));
-		users.add(createUser(3, "name3", 25));
-		users.add(createUser(4, "name4", 26));
-		
-		return users;
+				
+		return cache.getUsers();
 	}
 	
-	private User createUser(int id,String name,int age) {
-		
-		User u = new User();
-		u.setId(id);
-		u.setName(name);
-		u.setAge(age);
-		u.setEmail("abc@xyz.com");
-		u.setPhone(9180234567L);
-		u.setSex("M");
-		return u;
+	public void createUser(User u) {
+		cache.saveUser(u);
+	}
+	
+	public User deleteUser(Integer id) {
+		return cache.deleteUser(id);
+	}
+	
+	public User modifyUser(User user) {
+		return cache.modifyUser(user);
 	}
 }

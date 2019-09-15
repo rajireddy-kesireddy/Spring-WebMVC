@@ -6,17 +6,17 @@ import javax.validation.constraints.NotNull;
 
 public class User {
 	@NotNull
-	private int id;
+	private Integer id;
 	@NotNull
 	private String name;
-	private int age;
+	private Integer age;
 	private String sex;
 	@NotNull
 	@Email
 	private String email;
 	@NotNull
 	@Min(value = 10)
-	private long phone;
+	private Long phone;
 	
 	@Override
 	public int hashCode() {
@@ -44,10 +44,10 @@ public class User {
 			return false;
 		return true;
 	}
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -56,10 +56,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getSex() {
@@ -74,10 +74,10 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public long getPhone() {
+	public Long getPhone() {
 		return phone;
 	}
-	public void setPhone(long phone) {
+	public void setPhone(Long phone) {
 		this.phone = phone;
 	}
 	@Override
